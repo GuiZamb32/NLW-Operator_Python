@@ -1,112 +1,69 @@
-# Implementação LeNet-5 com PyTorch
+# 🚀 NLW 2026 — Trilha Python: Visão Computacional
 
-Implementação da arquitetura clássica **LeNet-5** proposta por Yann LeCun et al. (1998) no artigo [*Gradient-Based Learning Applied to Document Recognition*](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf), treinada no dataset MNIST de dígitos manuscritos.
-
----
-
-## Arquitetura
-
-| Camada | Tipo | Filtros / Unidades | Kernel | Ativação |
-|--------|------|--------------------|--------|----------|
-| C1 | Conv2d | 6 | 5×5 | ReLU |
-| S2 | MaxPool2d | — | 2×2 | — |
-| C3 | Conv2d | 16 | 5×5 | ReLU |
-| S4 | MaxPool2d | — | 2×2 | — |
-| C5 | Conv2d | 120 | 5×5 | ReLU |
-| F6 | Linear | 84 | — | ReLU |
-| Saída | Linear | 10 | — | — |
-
-> **Observação:** `padding=2` é aplicado na camada C1 para compatibilidade com imagens 28×28 do MNIST, equivalente à entrada original de 32×32.
+Bem-vindo ao repositório do projeto **NLW 2026 Visão Computacional**. Este workspace contém uma coleção de projetos e experimentos desenvolvidos durante a trilha Python de Visão Computacional da NLW 2026 da Rocketseat, focando em Deep Learning, Reconhecimento de Gestos em tempo real e técnicas avançadas de Visão Computacional.
 
 ---
 
-## Estrutura do Projeto
+## 📂 Estrutura do Projeto
 
-```
-lenet/
-├── data/                    # Dataset MNIST (baixado automaticamente)
-├── weights/
-│   └── lenet5_mnist.pth     # Pesos salvos do modelo
-├── lenet5.ipynb             # Notebook principal
-└── README.md
-```
+Este monorepo está dividido em três módulos principais, um para cada aula:
 
----
+### 1. [🧠 LeNet-5 MNIST](./lenet)
+Uma implementação moderna da clássica arquitetura **LeNet-5** utilizando **PyTorch** para classificação de dígitos manuscritos.
+- **Tecnologias principais**: PyTorch, Jupyter, Matplotlib.
+- **Destaques**: Camadas CNN customizadas, visualização de mapas de características (feature maps), análise de erros no dataset MNIST.
 
-## Conteúdo do Notebook
+### 2. [🔬 Recognition System & Lab](./recog_system)
+A "sala de máquinas" onde os modelos de gestos são treinados, junto com notebooks exploratórios para modelos SOTA (State of the Art).
+- **Tecnologias principais**: Scikit-Learn, MediaPipe, YOLO, CLIPSeg, Gemini Vision.
+- **Destaques**: Pipeline de coleta de dados customizado, scripts de treinamento de modelo e experimentação com detecção de objetos e segmentação.
+- **⚠️ Requisito**: Necessário baixar modelos do MediaPipe (veja o README do módulo).
 
-O notebook está organizado nas seguintes seções:
 
-1. **Visualização dos Filtros Iniciais** — Plota os 6 filtros da `conv1` com pesos aleatórios antes do treinamento
-2. **Carregamento e Visualização do MNIST** — Baixa o dataset e exibe imagens de exemplo
-3. **Visualização dos Feature Maps** — Mostra as ativações da `conv1` em uma imagem de exemplo
-4. **Treinamento da Rede** — Loop de treinamento completo com CrossEntropyLoss e otimizador Adam
-5. **Avaliação do Modelo** — Calcula a acurácia no conjunto de teste e coleta amostras classificadas incorretamente
-6. **Visualização dos Erros** — Plota imagens onde o modelo errou a previsão
-7. **Salvamento e Carregamento do Modelo** — Salva o `state_dict` em disco e demonstra como recarregá-lo
+### 3. [🖐️ Computer Vision App](./computer_vision_app)
+Uma aplicação web de alta performance construída com **FastHTML** e **MediaPipe** para reconhecimento de gestos faciais/mãos em tempo real via WebSockets.
+- **Tecnologias principais**: FastHTML, OpenCV, MediaPipe, Scikit-Learn.
+- **Destaques**: Processamento de vídeo de baixa latência, interface interativa, monitoramento de FPS em tempo real.
+- **⚠️ Requisito**: Necessário baixar modelos do MediaPipe (veja o README do módulo).
 
----
 
-## Requisitos
-
-- Python 3.11+
-- PyTorch
-- torchvision
-- matplotlib
-
-Instale todas as dependências:
-
-```bash
-python -m pip install torch torchvision matplotlib --index-url https://download.pytorch.org/whl/cpu
-```
-
-> Para suporte a GPU, substitua `cpu` pela sua versão do CUDA (ex: `cu121`).
 
 ---
 
-## Como Executar
+## 🛠️ Stack Tecnológica Global
 
-```bash
-# 1. Clone o repositório
-git clone https://github.com/seu-usuario/lenet.git
-cd lenet
-
-# 2. Crie e ative o ambiente virtual
-python -m venv .venv
-.venv\Scripts\activate        # Windows
-# source .venv/bin/activate   # Linux / macOS
-
-# 3. Instale as dependências
-python -m pip install torch torchvision matplotlib --index-url https://download.pytorch.org/whl/cpu
-
-# 4. Abra o notebook
-jupyter notebook lenet5.ipynb
-```
+- **Linguagem**: ![Python](https://img.shields.io/badge/Python-3.14+-3776AB?style=flat-square&logo=python&logoColor=white)
+- **Gerenciador de Pacotes**: ![uv](https://img.shields.io/badge/uv-Package%20Manager-purple?style=flat-square)
+- **Frameworks**: FastHTML, PyTorch, MediaPipe, OpenCV, Scikit-Learn.
+- **AI/ML**: YOLO-S, CLIPSeg, Google Gemini API.
 
 ---
 
-## Treinamento
+## 🚀 Como Começar
 
-O modelo é treinado no conjunto de treino do MNIST (60.000 imagens) com os seguintes hiperparâmetros:
+### Pré-requisitos
 
-| Hiperparâmetro | Valor |
-|----------------|-------|
-| Otimizador | Adam |
-| Taxa de Aprendizado | 0.001 |
-| Tamanho do Batch | 64 |
-| Épocas | 5 |
-| Função de Perda | CrossEntropyLoss |
+Certifique-se de ter o [uv](https://github.com/astral-sh/uv) instalado. Ele é utilizado em todos os módulos para um gerenciamento de dependências rápido e confiável.
+
+### Instalação
+
+1. **Clone o repositório**:
+   ```bash
+   git clone <repository-url>
+   cd nlw-2026-computer-vision
+   ```
+
+2. **Explore os Módulos**:
+   Cada subpasta possui seu próprio `pyproject.toml` e ambiente. Navegue até um módulo específico para começar:
+   ```bash
+   cd computer_vision_app
+   uv sync
+   ```
 
 ---
 
-## Resultados
+## 📄 Licença
 
-Após 5 épocas de treinamento em CPU, o modelo atinge aproximadamente **98% de acurácia** no conjunto de teste do MNIST (10.000 imagens).
+Este projeto foi desenvolvido para fins educacionais durante o **NLW 2026** da Rocketseat.
 
----
-
-## Referência
-
-> Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner.
-> *Gradient-based learning applied to document recognition.*
-> Proceedings of the IEEE, 86(11):2278–2324, November 1998.
+*Feito com ❤️ por Arthur Kamienski*
